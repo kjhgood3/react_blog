@@ -21,11 +21,24 @@ function App() {
       </div>
       {/* <img src={logo} />  이미지 사용하려면 맨위에 해당 경로 import 하고 {}안에 파일명 입력해야한다. 그냥 경로 입력해도 되긴 함..*/}
 
-      <div className="list">
-        <h3 onClick={modalSwitch}>{title[0]}<span onClick={() => { setNum(num + 1) }}>👍</span>{num}</h3>
-        <p>10월 7일 발행</p>
-        <hr />
-      </div>
+      {
+        title.map((a, b) => {
+          return (
+            <div className="list">
+              <h3 onClick={modalSwitch}>
+                {a}
+                <span onClick={() => { setNum(num + 1) }}>👍</span>
+                {num}
+              </h3>
+              <p>10월 7일 발행</p>
+              <hr />
+            </div>
+          );
+
+        })
+      }
+
+
       {
         modal === true
           ? <Modal></Modal>
