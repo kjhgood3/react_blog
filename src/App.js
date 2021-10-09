@@ -9,6 +9,7 @@ function App() {
   let [title, setTitle] = useState(['리액트 공부하기', '노드.js 공부하기', '스프링 공부하기']);
   let [num, setNum] = useState(0);
   let [modal, setModal] = useState(false); // 모달창을 켜고 끄는 스위치 역할
+  let [button, setButton] = useState(0);
 
   function modalSwitch() {
     setModal(!modal);
@@ -22,10 +23,10 @@ function App() {
       {/* <img src={logo} />  이미지 사용하려면 맨위에 해당 경로 import 하고 {}안에 파일명 입력해야한다. 그냥 경로 입력해도 되긴 함..*/}
 
       {
-        title.map((a, b) => {
+        title.map((a, i) => {
           return (
-            <div className="list">
-              <h3 onClick={modalSwitch}>
+            <div className="list" key={i}>
+              <h3 onClick={() => { setButton(i) }}>
                 {a}
                 <span onClick={() => { setNum(num + 1) }}>👍</span>
                 {num}
@@ -34,25 +35,30 @@ function App() {
               <hr />
             </div>
           );
-
         })
       }
 
+      <button onClick={modalSwitch}>열고닫기</button>
 
       {
         modal === true
-          ? <Modal></Modal>
+          ? <Modal title={title} button={button}></Modal>
           : null  // 텅빈 HTML
       }
+
+
+
+
+
 
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <div class="modal">
-      <h2>제목</h2>
+      <h2>{props.title[props.button]}</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
