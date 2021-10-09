@@ -10,10 +10,12 @@ function App() {
   let [num, setNum] = useState(0);
   let [modal, setModal] = useState(false); // 모달창을 켜고 끄는 스위치 역할
   let [button, setButton] = useState(0);
+  let [inputValue, setInputValue] = useState('');
 
   function modalSwitch() {
     setModal(!modal);
   }
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -37,6 +39,9 @@ function App() {
           );
         })
       }
+
+      {inputValue}
+      <input onChange={(e) => { setInputValue(e.target.value) }} />
 
       <button onClick={modalSwitch}>열고닫기</button>
 
