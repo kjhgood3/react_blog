@@ -16,6 +16,12 @@ function App() {
     setModal(!modal);
   }
 
+  function oneAdd() {
+    let newArray = [...title];
+    newArray.unshift(inputValue);   // unshift() array 맨앞에 자료 추가하는 함수!!!!
+    setTitle(newArray);
+  }
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -40,8 +46,10 @@ function App() {
         })
       }
 
-      {inputValue}
-      <input onChange={(e) => { setInputValue(e.target.value) }} />
+      <div className="publish">
+        <input onChange={(e) => { setInputValue(e.target.value) }} />
+        <button onClick={oneAdd}>저장</button>
+      </div>
 
       <button onClick={modalSwitch}>열고닫기</button>
 
